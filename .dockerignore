@@ -1,0 +1,9 @@
+.git
+.github
+deploy
+tests
+*.md
+.env
+token.txt
+state.json
+__pycache__

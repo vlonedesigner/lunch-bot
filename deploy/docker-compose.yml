@@ -1,0 +1,16 @@
+# Кладётся на сервер. Запуск: docker compose up -d
+# Watchtower на сервере уже есть: он увидит новый :latest на Docker Hub и перезапустит контейнер.
+services:
+  lunch-bot:
+    image: ${DOCKERHUB_USERNAME}/lunch-bot:latest
+    container_name: lunch-bot
+    restart: unless-stopped
+    env_file: .env
+    volumes:
+      - lunch-bot-data:/data
+    labels:
+      # нужно, если Watchtower запущен в режиме --label-enable
+      - com.centurylinklabs.watchtower.enable=true
+
+volumes:
+  lunch-bot-data:
